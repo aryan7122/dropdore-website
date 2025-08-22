@@ -10,12 +10,12 @@
   position: relative;
   background-color: #111;
 
-  @media (max-width: 480px) {
-    border-width: 0;
-    border-radius: 0;
-    height: 100vh;
-    max-height: none;
-  }
+  // @media (max-width: 480px) {
+  //   border-width: 0;
+  //   border-radius: 0;
+  //   height: 100vh;
+  //   max-height: none;
+  // }
 }
 
 .mobile-screen {
