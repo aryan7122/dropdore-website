@@ -1,0 +1,168 @@
+.bottom-nav-container {
+  position: absolute;
+  bottom: 0rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  z-index: 1000;
+}
+
+.bottom-nav {
+  width: 100%;
+  height: 46px;
+  background-color: var(--bg-secondary);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  position: relative;
+  box-shadow: 0 0 10px 0.1px var(--shadow-color);
+}
+
+.nav-item {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-secondary);
+  padding: 0.8rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), color 0.3s ease;
+
+  &:hover {
+    color: var(--accent-primary);
+  }
+
+  &.active {
+    color: var(--accent-primary);
+    transform: translateY(-12px);
+      background-color: var(--bg-secondary);
+      border-radius: 100px;
+    
+
+  }
+
+  .nav-label {
+    font-size: 11px;
+    margin-top: 4px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    transition: color 0.3s;
+  }
+
+  &.active .nav-label {
+    color: var(--accent-primary);
+  }
+}
+
+.add-button-container {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 2;
+}
+
+/* Notch Effect */
+.nav-notch {
+  position: absolute;
+  top: 0;
+  left: var(--notch-left);
+  width: var(--notch-width);
+  height: 32.5px;
+  background-color: transparent;
+  transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 1;
+
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    width: 20px;
+    height: 20px;
+    background-color: transparent;
+    border-bottom-right-radius: 20px;
+    box-shadow: 0 10px 0 0 var(--bg-secondary);
+  }
+
+  &::before {
+    left: -20px;
+  }
+
+  &::after {
+    right: -20px;
+    transform: scaleX(-1);
+  }
+}
+
+/* Floating Icons */
+.floating-icons {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-60%);
+  width: 220px;
+  height: 220px;
+  pointer-events: none;
+  z-index: 1;
+
+  $angle-step: 36deg;
+
+  .floating-icon-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform-origin: 0 0;
+    transform: rotate(calc(-180deg + var(--i) * #{$angle-step}));
+    transition: transform 0.5s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.3s ease;
+    opacity: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  &.open .floating-icon-wrapper {
+    opacity: 1;
+    transform: rotate(calc(-180deg + var(--i) * #{$angle-step}))
+               translateX(110px)
+               rotate(calc(180deg - var(--i) * #{$angle-step}));
+    pointer-events: auto;
+    transition-delay: calc(var(--i) * 0.05s);
+  }
+
+  .floating-icon {
+    background-color: var(--bg-secondary);
+    color: var(--text-secondary);
+    border: 1px solid var(--border-color);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    box-shadow: 0 5px 15px var(--shadow-color);
+    cursor: pointer;
+    transition: transform 0.2s ease, color 0.3s ease;
+
+    &.active {
+      color: var(--accent-primary);
+    }
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  .floating-label {
+    font-size: 10px;
+    margin-top: 6px;
+    color: var(--text-secondary);
+    font-weight: 500;
+    text-align: center;
+  }
+
+  .floating-icon.active + .floating-label {
+    color: var(--accent-primary);
+  }
+}

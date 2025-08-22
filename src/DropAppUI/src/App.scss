@@ -1,0 +1,32 @@
+.mobile-container {
+  display: flex;
+  flex-direction: column;
+  height: 100%; /* CRITICAL FIX: Was 0%, now 100% */
+  width: 100%;
+  box-shadow: 0 15px 50px var(--shadow-color);
+  border: 1px solid var(--border-color);
+  background-color: var(--bg-secondary); // Container also needs a background
+}
+
+.content-area {
+  flex-grow: 1;
+  overflow-y: auto;
+  
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+
+body {
+  background-color: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.card {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 2px 6px var(--shadow-color);
+}
